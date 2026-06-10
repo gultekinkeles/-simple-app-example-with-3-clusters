@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: client
+spec:
+  host: client.test.example.com
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: server
+spec:
+  host: server.test.example.com
