@@ -3,12 +3,3 @@ kind: Kustomization
 
 resources:
   - components/nginx/base
-
-#replicas:
-#  - name: nginx
-#    count: 1
-
-#configMapGenerator:
-#  - name: index-html
-#    literals:
-#      - index.html=<html><body><h1>Hello World from Nginx</h1></body></html>
