@@ -21,25 +21,23 @@ spec:
       containers:
       - name: nginx
         image: registry.redhat.io/rhel8/nginx-120:latest
-         ports:
-         - containerPort: 8080
-           name: http
-         env:
-         - name: NGINX_CONTAINER_RUN_AS
-           value: nginx
-         resources:
-           requests:
-             memory: "64Mi"
-             cpu: "100m"
-           limits:
-             memory: "256Mi"
-             cpu: "500m"
-         volumeMounts:
-         # Red Hat imajının resmi ek konfigürasyon dizinine bağlıyoruz
-         # İmaj bu dizini otomatik olarak kontrol eder ve içeriği kopyalar
-         - name: html-volume
-           mountPath: /opt/app-root/src/nginx-start/index.html
-           subPath: index.html
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: NGINX_CONTAINER_RUN_AS
+          value: nginx
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        volumeMounts:
+        - name: html-volume
+          mountPath: /opt/app-root/src/nginx-start/index.html
+          subPath: index.html
       volumes:
       - name: html-volume
         configMap:
