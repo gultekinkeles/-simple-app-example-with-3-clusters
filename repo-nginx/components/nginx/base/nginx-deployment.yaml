@@ -35,9 +35,9 @@ spec:
             memory: "256Mi"
             cpu: "500m"
         volumeMounts:
+        # ConfigMap'imizi geçici ve güvenli bir dizine düz dosya olarak bağlıyoruz
         - name: html-volume
-          mountPath: /opt/app-root/src/nginx-start/index.html
-          subPath: index.html
+          mountPath: /tmp/html
       volumes:
       - name: html-volume
         configMap:
