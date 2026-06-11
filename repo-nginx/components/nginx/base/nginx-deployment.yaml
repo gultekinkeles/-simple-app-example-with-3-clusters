@@ -22,7 +22,7 @@ spec:
       - name: nginx
         image: registry.redhat.io/rhel8/nginx-120:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080  # RHEL Nginx imajları varsayılan olarak 8080 portunu dinler
           name: http
         resources:
           requests:
@@ -32,12 +32,12 @@ spec:
             memory: "256Mi"
             cpu: "500m"
         volumeMounts:
-        # TERTEMİZ ÇÖZÜM: ConfigMap'i doğrudan Nginx'in ana html klasörüne basıyoruz. 
-        # Çakışma yaratan PVC mount'unu buradan kaldırıyoruz!
+        # subPath ekleyerek klasörün tamamını ezmek yerine sadece index.html dosyasını değiştiriyoruz.
+        # Böylece S2I imajının başlangıç script'leri patlamıyor ve pod CrashLoop'a girmiyor.
         - name: index-config
-          mountPath: /usr/share/nginx/html
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
       volumes:
-      # Sadece ConfigMap'i bağlamamız "Hello World" sayfasının basılması için tamamen yeterlidir
       - name: index-config
         configMap:
           name: index-html
