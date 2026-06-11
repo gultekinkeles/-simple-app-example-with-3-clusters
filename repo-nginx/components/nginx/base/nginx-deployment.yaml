@@ -37,20 +37,11 @@ spec:
             memory: "256Mi"
             cpu: "500m"
         volumeMounts:
-        # 1. Aşama: HTML dosyasının duracağı güvenli dizin - doğrudan dosyayı eşliyoruz
         - name: html-volume
-          mountPath: /tmp/html/index.html
+          mountPath: /opt/app-root/src/index.html
           subPath: index.html
-        # 2. Aşama: Nginx'e bu dizini tanıtacak küçük konfigürasyon dosyası
-        - name: config-volume
-          mountPath: /etc/nginx/default.d/custom-root.conf
-          subPath: custom-root.conf
       volumes:
       - name: html-volume
         configMap:
-          name: index-html
-          defaultMode: 420
-      - name: config-volume
-        configMap:
-          name: nginx-custom-config
+          name: index-html-8gd6892k4b
           defaultMode: 420
