@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-custom-config
+data:
+  custom-root.conf: |
+    location / {
+        root /tmp/html;
+        index index.html index.htm;
+    }

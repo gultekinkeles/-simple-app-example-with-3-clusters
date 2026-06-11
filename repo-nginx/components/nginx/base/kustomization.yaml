@@ -6,3 +6,4 @@ resources:
   - nginx-service.yaml
   - nginx-pvc.yaml
   - nginx-route.yaml
+  - nginx-custom-config.yaml
