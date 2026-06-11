@@ -1,11 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: product-catalog-test
+namespace: product-catalog
 
 resources:
-  - ../../
-
+  - ../../components/client/base
+  - ../../components/server/base
+  - ../../components/database/base
 replicas:
   - name: server
     count: 1
